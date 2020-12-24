@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.example.madlevel5task2.Game
 import androidx.navigation.fragment.findNavController
@@ -33,7 +34,6 @@ class AddGameFragment : Fragment() {
         saveFab.setOnClickListener{
             addGame()
         }
-
     }
 
     private fun addGame(){
