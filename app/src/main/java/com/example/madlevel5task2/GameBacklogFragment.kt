@@ -40,7 +40,7 @@ class GameBacklogFragment : Fragment() {
     private fun initViews(){
         rvGames.layoutManager = LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         rvGames.adapter = gameAdapter
-        //createItemTouchHelper().attachToRecyclerView(rvGames)
+        createItemTouchHelper().attachToRecyclerView(rvGames)
     }
 
     private fun observeAddGameResults(){
