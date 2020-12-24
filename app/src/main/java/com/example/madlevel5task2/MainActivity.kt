@@ -20,7 +20,12 @@ class MainActivity : AppCompatActivity() {
 
         navController = findNavController(R.id.nav_host_fragment)
 
-
+        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener{view ->
+            navController.navigate(
+                R.id.action_FirstFragment_to_SecondFragment
+            )
+        }
+        fabToggle()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -36,6 +41,16 @@ class MainActivity : AppCompatActivity() {
         return when (item.itemId) {
             R.id.action_settings -> true
             else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun fabToggle(){
+        navController.addOnDestinationChangedListener { _,       destination, _ ->
+            if (destination.id in arrayOf(R.id.SecondFragment)) {
+                findViewById<FloatingActionButton>(R.id.fab).hide()
+            } else {
+                findViewById<FloatingActionButton>(R.id.fab).show()
+            }
         }
     }
 }
