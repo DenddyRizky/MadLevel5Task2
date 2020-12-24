@@ -6,12 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
 class AddGameFragment : Fragment() {
+
+    private val viewModel: GameViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
