@@ -7,7 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.viewModels
+import com.example.madlevel5task2.Game
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.android.synthetic.main.fragment_add_game.*
+import java.util.*
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -26,6 +30,16 @@ class AddGameFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        saveFab.setOnClickListener{
+            addGame()
+        }
+
+    }
+
+    private fun addGame(){
+        val game = Game(etTitle.text.toString(), etPlatform.text.toString(), Date(etYear.text.toString().toInt(), etMonth.text.toString().toInt(), etDateDay.text.toString().toInt()))
+        viewModel.insertGame(game)
+        findNavController().popBackStack()
     }
 }
 

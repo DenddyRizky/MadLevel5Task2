@@ -6,12 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 class GameBacklogFragment : Fragment() {
+
+    private val viewModel: GameViewModel by viewModels()
+    private val games = arrayListOf<Game>()
+    private val gameAdapter = GameAdapter(games)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,5 +29,13 @@ class GameBacklogFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        observeAddGameResults()
+    }
+
+    private fun observeAddGameResults(){
+        viewModel.game.observe(viewLifecycleOwner, Observer {game ->
+            this@GameBacklogFragment.games.clear()
+            this@GameBacklogFragment.games.addAll(game)
+        })
     }
 }
